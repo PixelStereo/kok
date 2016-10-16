@@ -1,0 +1,3 @@
+[submodule "pykok"]
+	path = pykok
+	url = https://reno-@github.com/PixelStereo/pykok.git
