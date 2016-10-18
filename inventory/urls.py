@@ -20,4 +20,8 @@ from . import views
 urlpatterns = [
     url(r'^$', views.home),
     url(r'^home$', views.home),
+	url(r'^item/(?P<id_item>\d+)$', views.view_item), 					# view for one item (argument is item id)
+    url(r'^items/(?P<filter_attribute>\s+)/(?P<filter_value>\s+)$', views.list_items),  	# view for a list of items (can be filtered with arguments)
+    url(r'^date$', views.date_actuelle),
+    url(r'^addition/(?P<nombre1>\d+)/(?P<nombre2>\d+)/$', views.addition)
 ]
