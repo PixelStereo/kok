@@ -22,7 +22,9 @@ from . import views
 urlpatterns = [
     url(r'^$', views.home),
     url(r'^home$', views.home),
+    url(r'^clear$', views.clear),
     url(r'^rainbow$', views.rainbow),
+    url(r'^item$', views.new_item),
     url(r'^item/(?P<id_item>\d+)$', views.view_item),
     url(r'^items$', views.list_items),
     url(r'^items/(?P<filter_attribute>\s+)/(?P<filter_value>\s+)$', views.list_items),

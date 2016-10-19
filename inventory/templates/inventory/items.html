@@ -5,10 +5,12 @@
 {% block content %}
 
     <h2>Items list</h2>
-	<ul>
-		{% for item in answer %}
-    		<li>{{ item }}</li>
-		{% endfor %}
-	</ul>
+    <ul>
+        {% for item in items %}
+            <li>{{ item.name }}</li>
+    	{% empty %}
+        	<p class="empty">Pas encore d'items</p>
+        {% endfor %}
+    </ul>
 
 {% endblock %}
