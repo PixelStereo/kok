@@ -47,7 +47,7 @@ def new_location(request):
     """
     create a new item
     """
-    location = Item(name='location without name')
+    location = Location(name='location without name')
     location.save()
     return render(request, 'inventory/new-location.html', {'location': location})
 
