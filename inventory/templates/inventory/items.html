@@ -1,0 +1,14 @@
+{% extends "./base.html" %}
+
+{% block title %}KoK Supa App Home{% endblock %}
+
+{% block content %}
+
+    <h2>Items list</h2>
+	<ul>
+		{% for item in answer %}
+    		<li>{{ item }}</li>
+		{% endfor %}
+	</ul>
+
+{% endblock %}

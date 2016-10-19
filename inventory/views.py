@@ -10,12 +10,7 @@ def home(request):
     """
     Home page
     """
-
-    text = """<h1>Bienvenue dans l'inventaire Koi Ou Kou (aka KoK)  !</h1>
-
-              <p>Allez, on se prépare !!</p>"""
-
-    return HttpResponse(text)
+    return render(request, 'inventory/home.html')
 
 def view_item(request, id_item):
     """
@@ -32,7 +27,8 @@ def list_items(request):
 	no arguments give the list of all items
 	arguments will filter values (per location, per price etc…)
 	"""
-    return HttpResponse(answer)
+    answer = 'all the items'
+    return render(request, 'inventory/items.html', {'answer': answer})
 
 def date_actuelle(request):
     """
@@ -47,3 +43,13 @@ def addition(request, nombre1, nombre2):
     total = int(nombre1) + int(nombre2)
     # Retourne nombre1, nombre2 et la somme des deux au tpl
     return render(request, 'inventory/addition.html', locals())
+
+def hello(request, name):
+    """
+    say hello to the user
+    """
+    return render(request, 'inventory/hello.html', {'date': datetime.now(), 'name': name.capitalize()})
+
+def rainbow(request):
+    couleurs = ['rouge', 'orange', 'jaune', 'vert', 'bleu', 'indigo', 'violet']
+    return render(request, 'inventory/rainbow.html', {'couleurs': couleurs})

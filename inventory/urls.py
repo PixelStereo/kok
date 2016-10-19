@@ -15,13 +15,18 @@ Including another URLconf
 """
 
 from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
     url(r'^$', views.home),
     url(r'^home$', views.home),
-	url(r'^item/(?P<id_item>\d+)$', views.view_item), 					# view for one item (argument is item id)
-    url(r'^items/(?P<filter_attribute>\s+)/(?P<filter_value>\s+)$', views.list_items),  	# view for a list of items (can be filtered with arguments)
+    url(r'^rainbow$', views.rainbow),
+    url(r'^item/(?P<id_item>\d+)$', views.view_item),
+    url(r'^items$', views.list_items),
+    url(r'^items/(?P<filter_attribute>\s+)/(?P<filter_value>\s+)$', views.list_items),
     url(r'^date$', views.date_actuelle),
-    url(r'^addition/(?P<nombre1>\d+)/(?P<nombre2>\d+)/$', views.addition)
+    url(r'^hello/(?P<name>\w+)$', views.hello),
+    url(r'^addition/(?P<nombre1>\d+)/(?P<nombre2>\d+)$', views.addition),
 ]

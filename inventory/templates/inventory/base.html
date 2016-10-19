@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+   <link rel="stylesheet" href="/media/css/style.css" />
+	{% load static %}
+	<img src="{% static 'img/Logo_SM_800px.png' %}" alt="SM logo" ></code>
+   <title>{% block title %}Koi Ou Kan aka KoK - an inventory application{% endblock %}</title>
+
+</head>
+
+<body>
+
+<header>KoK inventory application</header>
+
+    <nav>
+
+       {% block nav %}
+
+       <ul>
+
+            <li><a href="/kok">Home</a></li>
+
+            <li><a href="/kok/items/">Items List</a></li>
+
+            <li><a href="/kok/new-item/">New Item</a></li>
+
+            <li><a href="/kok/new-location/">New Location</a></li>
+
+       </ul>
+
+       {% endblock %}
+
+   </nav>
+
+   <section id="content">
+
+       {% block content %}{% endblock %}
+
+   </section>
+
+<footer>&copy; toto la malice</footer>
+
+</body>
+
+</html>
