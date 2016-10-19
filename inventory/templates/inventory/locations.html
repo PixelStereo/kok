@@ -1,0 +1,16 @@
+{% extends "./base.html" %}
+
+{% block title %}KoK Supa App Home{% endblock %}
+
+{% block content %}
+
+    <h2>Locations list</h2>
+    <ul>
+        {% for location in locations %}
+            <li><a href=location/{{item.id}}>{{ location.name }}</a></li>
+    	{% empty %}
+        	<p class="empty">Pas encore de lieu de stockage</p>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

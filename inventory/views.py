@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404
 
 from .models import Item
+from .forms import ItemForm
 
 def home(request):
 
@@ -18,10 +19,19 @@ def view_item(request, id_item):
     """
     View of an item
     """
-    if int(id_item) > 100:
-        raise Http404
-    text = "<h1>This is the view of the item " + id_item + " </h1>"
-    return HttpResponse(text)
+    item = Item.objects.get(id=id_item)
+    return render(request, 'inventory/item.html', {item: item})
+
+def new_item(request):
+    """
+    create a new item
+    """
+    item = ItemForm()
+    if item.is_valid():
+        item.save()
+    print('---------')
+    print(item)
+    return render(request, 'inventory/new-item.html', {'item': item})
 
 def list_items(request):
     """
@@ -32,6 +42,24 @@ def list_items(request):
     # list all items
     items = Item.objects.all()
     return render(request, 'inventory/items.html', {'items': items})
+
+def new_location(request):
+    """
+    create a new item
+    """
+    location = Item(name='location without name')
+    location.save()
+    return render(request, 'inventory/new-location.html', {'location': location})
+
+def list_locations(request):
+    """
+    View of a list of items
+    no arguments give the list of all items
+    arguments will filter values (per location, per price etc…)
+    """
+    # list all items
+    locations = Location.objects.all()
+    return render(request, 'inventory/locations.html', {'locations': locations})
 
 def date_actuelle(request):
     """
@@ -59,14 +87,6 @@ def rainbow(request):
     """
     couleurs = ['rouge', 'orange', 'jaune', 'vert', 'bleu', 'indigo', 'violet']
     return render(request, 'inventory/rainbow.html', {'couleurs': couleurs})
-
-def new_item(request):
-    """
-    create a new item
-    """
-    item = Item(name='item without name')
-    item.save()
-    return render(request, 'inventory/item.html', {'item': item})
 
 def clear(request):
     for item in Item.objects.all():

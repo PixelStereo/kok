@@ -7,7 +7,7 @@
     <h2>Items list</h2>
     <ul>
         {% for item in items %}
-            <li><a href=/kok/item/{{item.id}}>{{ item.name }}</a></li>
+            <li><a href=item/{{item.id}}>{{ item.name }}</a></li>
     	{% empty %}
         	<p class="empty">Pas encore d'items</p>
         {% endfor %}
