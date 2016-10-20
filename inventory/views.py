@@ -21,7 +21,6 @@ def view_item(request, id_item):
     """
     #item = Item.objects.get(id=id_item)
     item = get_object_or_404(Item, id=id_item)
-    print(item)
     return render(request, 'inventory/item.html', {item: item})
 
 def new_item(request):
