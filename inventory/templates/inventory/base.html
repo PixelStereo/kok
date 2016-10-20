@@ -22,14 +22,13 @@
        {% block nav %}
 
        <ul>
-
             <li><a href="/kok">Home</a></li>
-
             <li><a href="/kok/items/">Items List</a></li>
-
             <li><a href="/kok/new-item/">New Item</a></li>
-
+            <li><a href="/kok/locations/">Locations List</a></li>
             <li><a href="/kok/new-location/">New Location</a></li>
+            <li><a href="/kok/persons/">Persons List</a></li>
+            <li><a href="/kok/new-person/">New Person</a></li>
 
        </ul>
 
@@ -39,11 +38,18 @@
 
    <section id="content">
 
-       {% block content %}{% endblock %}
+       {% block content %}
+
+       {% endblock %}
 
    </section>
 
-<footer>&copy; toto la malice</footer>
+  <footer class="blog-footer" id="non-printable">
+    <p>
+      Copyright &#169; 2016-{% now "Y" %}, <a href="{% url 'home' %}">Pixel Stereo</a> -
+      Powered by <a href="https://www.djangoproject.com/" target="_blank">Django</a> -
+      Created by <a href="https://github.com/reno-/" target="_blank">reno-</a></p>
+  </footer>
 
 </body>
 

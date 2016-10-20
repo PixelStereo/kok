@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.home),
+    url(r'^$', views.home, name='home'),
     url(r'^home$', views.home),
     url(r'^clear$', views.clear),
     url(r'^new-item$', views.new_item),

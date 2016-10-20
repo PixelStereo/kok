@@ -3,7 +3,7 @@
 from datetime import datetime
 
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 
 from .models import Item, Location, Person
 from .forms import ItemForm, LocationForm, PersonForm
@@ -26,10 +26,30 @@ def new_item(request):
     """
     create a new item
     """
-    item = ItemForm()
+    """item = ItemForm()
     if item.is_valid():
         item.save()
-    return render(request, 'inventory/new-item.html', {'item': item})
+    return render(request, 'inventory/new-item.html', {'item': item})"""
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = ItemForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            name = form.cleaned_data['name']
+            description = form.cleaned_data['description']
+            serial = form.cleaned_data['serial']
+            location = form.cleaned_data['location']
+            purchase_date = form.cleaned_data['purchase_date']
+            purchase_price = form.cleaned_data['purchase_price']
+            form.save()
+            # redirect to a new URL:
+            return HttpResponseRedirect('/kok/items')
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = ItemForm()  # Nous créons un formulaire vide
+    return render(request, 'inventory/new-item.html', {'form': form})
 
 def list_items(request):
     """
