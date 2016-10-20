@@ -30,8 +30,6 @@ def new_item(request):
     item = ItemForm()
     if item.is_valid():
         item.save()
-    print('---------')
-    print(item)
     return render(request, 'inventory/new-item.html', {'item': item})
 
 def list_items(request):
