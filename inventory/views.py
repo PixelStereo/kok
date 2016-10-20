@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 
 from .models import Item
@@ -19,7 +19,9 @@ def view_item(request, id_item):
     """
     View of an item
     """
-    item = Item.objects.get(id=id_item)
+    #item = Item.objects.get(id=id_item)
+    item = get_object_or_404(Item, id=id_item)
+    print(item)
     return render(request, 'inventory/item.html', {item: item})
 
 def new_item(request):
