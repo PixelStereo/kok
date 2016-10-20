@@ -5,8 +5,8 @@ from datetime import datetime
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 
-from .models import Item
-from .forms import ItemForm
+from .models import Item, Location, Person
+from .forms import ItemForm, LocationForm, PersonForm
 
 def home(request):
 
@@ -19,7 +19,6 @@ def view_item(request, id_item):
     """
     View of an item
     """
-    #item = Item.objects.get(id=id_item)
     item = get_object_or_404(Item, id=id_item)
     return render(request, 'inventory/item.html', {item: item})
 
@@ -42,23 +41,57 @@ def list_items(request):
     items = Item.objects.all()
     return render(request, 'inventory/items.html', {'items': items})
 
+def view_location(request, id_location):
+    """
+    View of an item
+    """
+    location = get_object_or_404(Location, id=id_location)
+    return render(request, 'inventory/location.html', {location: location})
+
 def new_location(request):
     """
     create a new item
     """
-    location = Location(name='location without name')
-    location.save()
+    location = LocationForm()
+    if location.is_valid():
+        location.save()
     return render(request, 'inventory/new-location.html', {'location': location})
 
 def list_locations(request):
+    """
+    View of a list of location
+    no arguments give the list of all locations
+    arguments will filter values (per person, per item etc…)
+    """
+    # list all items
+    locations = Location.objects.all()
+    return render(request, 'inventory/locations.html', {'locations': locations})
+
+def view_person(request, id_person):
+    """
+    View of a person
+    """
+    person = get_object_or_404(Person, id=id_person)
+    return render(request, 'inventory/person.html', {person: person})
+
+def new_person(request):
+    """
+    create a new item
+    """
+    person = PersonForm()
+    if person.is_valid():
+        person.save()
+    return render(request, 'inventory/new-person.html', {'person': person})
+
+def list_persons(request):
     """
     View of a list of items
     no arguments give the list of all items
     arguments will filter values (per location, per price etc…)
     """
     # list all items
-    locations = Location.objects.all()
-    return render(request, 'inventory/locations.html', {'locations': locations})
+    persons = Person.objects.all()
+    return render(request, 'inventory/persons.html', {'persons': persons})
 
 def date_actuelle(request):
     """

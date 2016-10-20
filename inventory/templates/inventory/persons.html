@@ -1,0 +1,16 @@
+{% extends "./base.html" %}
+
+{% block title %}KoK Supa App Home{% endblock %}
+
+{% block content %}
+
+    <h2>Persons list</h2>
+    <ul>
+        {% for person in persons %}
+            <li><a href=/kok/person/{{person.id}}>{{ person.firstname }} {{person.lastname}}</a></li>
+    	{% empty %}
+        	<p class="empty">Pas encore de personnes</p>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

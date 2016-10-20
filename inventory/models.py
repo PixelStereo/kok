@@ -7,8 +7,8 @@ from django.utils import timezone
 
 class Item(models.Model):
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=400)
-    serial = models.TextField(null=True)
+    description = models.TextField(null=True)
+    serial = models.CharField(max_length=100, null=True)
     purchase_date = models.DateTimeField(auto_now=False, 
                                 verbose_name="Date d'achat", default=timezone.now)
     purchase_price = models.CharField(max_length=9, verbose_name="Prix d'achat")
@@ -30,7 +30,7 @@ class ItemAdmin(admin.ModelAdmin):
 
 class Location(models.Model):
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=400)
+    description = models.TextField(null=True)
     address = models.CharField(max_length=400)
     contact = models.ForeignKey('Person', null=True)
 
@@ -48,10 +48,10 @@ class LocationAdmin(admin.ModelAdmin):
     fields = ('name', 'description', 'address', 'contact')
 
 class Person(models.Model):
-    firstname = models.CharField(max_length=100)
-    lastname = models.CharField(max_length=100)
-    phone = models.CharField(max_length=400)
-    mail = models.CharField(max_length=400)
+    firstname = models.CharField(max_length=100, verbose_name="First Name")
+    lastname = models.CharField(max_length=100, verbose_name="Last Name")
+    phone = models.CharField(max_length=400, verbose_name="Phone Number")
+    mail = models.EmailField(verbose_name="Email address")
 
     def __str__(self):
         """
