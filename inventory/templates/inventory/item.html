@@ -1,9 +1,13 @@
 {% extends "./base.html" %}
 
-{% block title %}KoK Supa App Home{% endblock %}
-
 {% block content %}
 
-    <h2>Item n° {{ item.name }} </h2>
-    
+    <h2>Create a new Item</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Register" />
+    </form>
+
 {% endblock %}

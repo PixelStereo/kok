@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^clear$', views.clear),
     url(r'^new-item$', views.new_item),
     url(r'^new-item/$', views.new_item),
-    url(r'^item/(?P<id_item>\d+)$', views.view_item),
+    url(r'^item/(?P<item_id>\d+)$', views.new_item),
     url(r'^items/$', views.list_items),
     url(r'^items$', views.list_items),
     url(r'^items/(?P<filter_attribute>\s+)/(?P<filter_value>\s+)$', views.list_items),

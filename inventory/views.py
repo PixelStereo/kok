@@ -22,14 +22,10 @@ def view_item(request, id_item):
     item = get_object_or_404(Item, id=id_item)
     return render(request, 'inventory/item.html', {item: item})
 
-def new_item(request):
+def new_item(request, item_id=None):
     """
     create a new item
     """
-    """item = ItemForm()
-    if item.is_valid():
-        item.save()
-    return render(request, 'inventory/new-item.html', {'item': item})"""
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -48,7 +44,14 @@ def new_item(request):
             return HttpResponseRedirect('/kok/items')
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = ItemForm()  # Nous créons un formulaire vide
+        if item_id:
+            for item in Item.objects.all():
+                if unicode(item.id) == item_id:
+                    # create a view that can modify the model through a filled form
+                    form = ItemForm(instance=item)
+        else:
+            # create an emty form
+            form = ItemForm()
     return render(request, 'inventory/new-item.html', {'form': form})
 
 def list_items(request):
